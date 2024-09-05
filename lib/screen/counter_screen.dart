@@ -3,7 +3,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:riverpod_beginner/providers/counter_async_notifier_provider.dart';
-import 'package:riverpod_beginner/providers/counter_notifier_provider.dart';
+import 'package:riverpod_beginner/screen/user_screen.dart';
+//import 'package:riverpod_beginner/providers/counter_notifier_provider.dart';
 //import 'package:riverpod_beginner/providers/counter_state_provider.dart';
 
 class CounterScreen extends ConsumerStatefulWidget {
@@ -21,6 +22,7 @@ class _CounterScreenState extends ConsumerState<CounterScreen> {
     //final counter = ref.watch(counterStateProvider);
     //final counter = ref.watch(counterNotifierProvider);
     final counterAsyn = ref.watch(counterAsyncNotifierProvider);
+    
 
     return Scaffold(
       appBar: AppBar(title: const Text('Counter Screen'),),
@@ -30,16 +32,26 @@ class _CounterScreenState extends ConsumerState<CounterScreen> {
             data: (data) => Text('You have pushed the button this many times: $data'),
             error: (error, stackTrace) => Text('$error'),
             loading: () => const CircularProgressIndicator(),
-          )
+          ),
 
           //Text('You have pushed the button this many times:$counter'),
           //Text('$counter', style: Theme.of(context).textTheme.bodyMedium,),
+
+          FilledButton(
+            onPressed: () {
+              Navigator.of(context).push(
+                MaterialPageRoute(builder: (context) => const UserScreen()),
+              );
+            }, 
+            child: const Text('User'),
+          )
         ],
       ),
       floatingActionButton: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           FloatingActionButton(
+            heroTag: 'increment',
             onPressed: () {
               //ref.read(counterStateProvider.notifier).state++; 
               // ref.read(counterNotifierProvider.notifier).increment();             
@@ -52,6 +64,7 @@ class _CounterScreenState extends ConsumerState<CounterScreen> {
           const SizedBox(width: 10),
 
           FloatingActionButton(
+            heroTag: 'decrement',
             onPressed: () {
               //ref.read(counterStateProvider.notifier).state--;
               ref.read(counterAsyncNotifierProvider.notifier).decrement();   
@@ -64,6 +77,7 @@ class _CounterScreenState extends ConsumerState<CounterScreen> {
           const SizedBox(width: 10),
 
           FloatingActionButton(
+            heroTag: 'reset',
             onPressed: () {
               //ref.read(counterStateProvider.notifier).state--;
               ref.read(counterAsyncNotifierProvider.notifier).reset();   
