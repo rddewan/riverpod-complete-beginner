@@ -17,6 +17,7 @@ final _privateConstructorUsedError = UnsupportedError(
 /// @nodoc
 mixin _$UserState {
   bool get isLoading => throw _privateConstructorUsedError;
+  bool get isAdded => throw _privateConstructorUsedError;
   String? get error => throw _privateConstructorUsedError;
   List<User> get users => throw _privateConstructorUsedError;
 
@@ -32,7 +33,7 @@ abstract class $UserStateCopyWith<$Res> {
   factory $UserStateCopyWith(UserState value, $Res Function(UserState) then) =
       _$UserStateCopyWithImpl<$Res, UserState>;
   @useResult
-  $Res call({bool isLoading, String? error, List<User> users});
+  $Res call({bool isLoading, bool isAdded, String? error, List<User> users});
 }
 
 /// @nodoc
@@ -51,6 +52,7 @@ class _$UserStateCopyWithImpl<$Res, $Val extends UserState>
   @override
   $Res call({
     Object? isLoading = null,
+    Object? isAdded = null,
     Object? error = freezed,
     Object? users = null,
   }) {
@@ -58,6 +60,10 @@ class _$UserStateCopyWithImpl<$Res, $Val extends UserState>
       isLoading: null == isLoading
           ? _value.isLoading
           : isLoading // ignore: cast_nullable_to_non_nullable
+              as bool,
+      isAdded: null == isAdded
+          ? _value.isAdded
+          : isAdded // ignore: cast_nullable_to_non_nullable
               as bool,
       error: freezed == error
           ? _value.error
@@ -79,7 +85,7 @@ abstract class _$$UserStateImplCopyWith<$Res>
       __$$UserStateImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({bool isLoading, String? error, List<User> users});
+  $Res call({bool isLoading, bool isAdded, String? error, List<User> users});
 }
 
 /// @nodoc
@@ -96,6 +102,7 @@ class __$$UserStateImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? isLoading = null,
+    Object? isAdded = null,
     Object? error = freezed,
     Object? users = null,
   }) {
@@ -103,6 +110,10 @@ class __$$UserStateImplCopyWithImpl<$Res>
       isLoading: null == isLoading
           ? _value.isLoading
           : isLoading // ignore: cast_nullable_to_non_nullable
+              as bool,
+      isAdded: null == isAdded
+          ? _value.isAdded
+          : isAdded // ignore: cast_nullable_to_non_nullable
               as bool,
       error: freezed == error
           ? _value.error
@@ -120,12 +131,18 @@ class __$$UserStateImplCopyWithImpl<$Res>
 
 class _$UserStateImpl implements _UserState {
   const _$UserStateImpl(
-      {this.isLoading = false, this.error, final List<User> users = const []})
+      {this.isLoading = false,
+      this.isAdded = false,
+      this.error,
+      final List<User> users = const []})
       : _users = users;
 
   @override
   @JsonKey()
   final bool isLoading;
+  @override
+  @JsonKey()
+  final bool isAdded;
   @override
   final String? error;
   final List<User> _users;
@@ -139,7 +156,7 @@ class _$UserStateImpl implements _UserState {
 
   @override
   String toString() {
-    return 'UserState(isLoading: $isLoading, error: $error, users: $users)';
+    return 'UserState(isLoading: $isLoading, isAdded: $isAdded, error: $error, users: $users)';
   }
 
   @override
@@ -149,12 +166,13 @@ class _$UserStateImpl implements _UserState {
             other is _$UserStateImpl &&
             (identical(other.isLoading, isLoading) ||
                 other.isLoading == isLoading) &&
+            (identical(other.isAdded, isAdded) || other.isAdded == isAdded) &&
             (identical(other.error, error) || other.error == error) &&
             const DeepCollectionEquality().equals(other._users, _users));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, isLoading, error,
+  int get hashCode => Object.hash(runtimeType, isLoading, isAdded, error,
       const DeepCollectionEquality().hash(_users));
 
   /// Create a copy of UserState
@@ -169,11 +187,14 @@ class _$UserStateImpl implements _UserState {
 abstract class _UserState implements UserState {
   const factory _UserState(
       {final bool isLoading,
+      final bool isAdded,
       final String? error,
       final List<User> users}) = _$UserStateImpl;
 
   @override
   bool get isLoading;
+  @override
+  bool get isAdded;
   @override
   String? get error;
   @override

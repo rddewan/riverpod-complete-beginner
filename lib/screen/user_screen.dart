@@ -3,7 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:riverpod_beginner/providers/user_notifier_provider.dart';
-import 'package:riverpod_beginner/view_model/user_view_model.dart';
+//import 'package:riverpod_beginner/view_model/user_view_model.dart';
 
 class UserScreen extends ConsumerStatefulWidget {
   const UserScreen({super.key});
