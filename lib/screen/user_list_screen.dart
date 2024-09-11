@@ -30,7 +30,8 @@ class _UserListScreenState extends ConsumerState<UserListScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final users = ref.watch(usersProvider);
+    debugPrint('UserScreen build');
+    final users = ref.watch(usersProvider.select((state) => state.users));
     
     return Scaffold(
       appBar: AppBar(title: const Text('User List Screen'),),
@@ -41,9 +42,9 @@ class _UserListScreenState extends ConsumerState<UserListScreen> {
               
             SliverFillRemaining(
               child: ListView.builder(
-                itemCount: users.users.length, 
+                itemCount: users.length, 
                 itemBuilder: (context,index) {
-                  final data = users.users[index];
+                  final data = users[index];
 
                   return ListTile(
                     title: Text(data.username),

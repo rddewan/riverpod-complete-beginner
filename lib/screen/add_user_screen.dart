@@ -126,10 +126,25 @@ class _AddUserScreenState extends ConsumerState<AddUserScreen> {
   }
 
   void _listener() {
-    ref.listen(usersProvider, (prev, next) {
+    ref.listen(usersProvider.select((state) => state.isAdded), (prev, next) {
 
-      if (next.isAdded) {
+      if (next) {
         Navigator.of(context).pop();
+      }
+
+    });
+
+    ref.listen(usersProvider.select((state) => state.error), (prev, next) {
+
+      if (next != null) {
+        showDialog(
+          context: context, 
+          builder: (context) {
+            return AlertDialog(
+              title: const Text('Error'),
+              content: Text(next.toString()),
+            );
+          });
       }
 
     });

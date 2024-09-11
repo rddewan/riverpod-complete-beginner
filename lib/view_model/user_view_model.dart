@@ -14,7 +14,7 @@ class UserViewModel extends Notifier<UserState> {
   }
 
   void addUser(User user) {
-    state = state.copyWith(isLoading: true, isAdded: false);
+    state = state.copyWith(isLoading: true, isAdded: false, error: null);
 
     final currentUsers = state.users;
 
@@ -22,6 +22,7 @@ class UserViewModel extends Notifier<UserState> {
       isLoading: false,
       users: [...currentUsers, user],
       isAdded: true,
+      //error: 'Something went wrong',
     );
 
 
