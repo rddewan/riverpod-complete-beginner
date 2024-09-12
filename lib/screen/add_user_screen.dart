@@ -24,6 +24,7 @@ class _AddUserScreenState extends ConsumerState<AddUserScreen> {
     _nameController = TextEditingController();
     _emailController = TextEditingController();
     _ageController = TextEditingController();
+    _listenerManual();
   }
 
   @override
@@ -38,7 +39,7 @@ class _AddUserScreenState extends ConsumerState<AddUserScreen> {
 
   @override
   Widget build(BuildContext context) {
-    _listener();
+    //_listener();
     
     return Scaffold(
       appBar: AppBar(
@@ -123,6 +124,31 @@ class _AddUserScreenState extends ConsumerState<AddUserScreen> {
       ref.read(usersProvider.notifier).addUser(user);
       
     }
+  }
+
+  void _listenerManual() {
+    ref.listenManual(usersProvider.select((state) => state.isAdded), (prev, next) {
+
+      if (next) {
+        Navigator.of(context).pop();
+      }
+
+    });
+
+    ref.listenManual(usersProvider.select((state) => state.error), (prev, next) {
+
+      if (next != null) {
+        showDialog(
+          context: context, 
+          builder: (context) {
+            return AlertDialog(
+              title: const Text('Error'),
+              content: Text(next.toString()),
+            );
+          });
+      }
+
+    });
   }
 
   void _listener() {

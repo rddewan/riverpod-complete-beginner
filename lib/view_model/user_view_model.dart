@@ -22,7 +22,7 @@ class UserViewModel extends Notifier<UserState> {
       isLoading: false,
       users: [...currentUsers, user],
       isAdded: true,
-      //error: 'Something went wrong',
+      error: 'Something went wrong',
     );
 
 
