@@ -1,6 +1,7 @@
 
 
 
+import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:riverpod_beginner/model/user.dart';
 import 'package:riverpod_beginner/state/user_state.dart';
@@ -10,6 +11,10 @@ final usersProvider = NotifierProvider<UserViewModel, UserState>(UserViewModel.n
 class UserViewModel extends Notifier<UserState> {
   @override
   UserState build() {
+    debugPrint('UserViewModel build');
+    ref.onDispose(() {
+      debugPrint('UserViewModel disposed');
+    });
     return const UserState(isLoading: true);
   }
 
@@ -22,7 +27,7 @@ class UserViewModel extends Notifier<UserState> {
       isLoading: false,
       users: [...currentUsers, user],
       isAdded: true,
-      error: 'Something went wrong',
+      //error: 'Something went wrong',
     );
 
 

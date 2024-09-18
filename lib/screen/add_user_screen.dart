@@ -130,6 +130,9 @@ class _AddUserScreenState extends ConsumerState<AddUserScreen> {
     ref.listenManual(usersProvider.select((state) => state.isAdded), (prev, next) {
 
       if (next) {
+        // ref.invalidate(usersProvider);
+        // final state = ref.refresh(usersProvider);
+        // debugPrint(state.users.toString());
         Navigator.of(context).pop();
       }
 
