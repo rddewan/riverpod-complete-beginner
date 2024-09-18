@@ -19,6 +19,9 @@ class _UserListScreenState extends ConsumerState<UserListScreen> {
   void initState() {
     super.initState();
     _userController = TextEditingController();
+    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
+      ref.read(userViewModelProvider.notifier).fetchUsers();
+    });
   }
 
   @override
