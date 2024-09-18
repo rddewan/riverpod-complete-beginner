@@ -13,7 +13,7 @@ const UserDetailScreen1({ Key? key }) : super(key: key);
         
     return Consumer(
       builder: (context, ref, child) {
-        final users = ref.watch(usersProvider.select((state) => state.users));
+        final users = ref.watch(userViewModelProvider.select((state) => state.users));
 
         return Container(
           child: Column(
@@ -21,7 +21,7 @@ const UserDetailScreen1({ Key? key }) : super(key: key);
         
                 ElevatedButton(
                   onPressed: () {
-                    ref.read(usersProvider.notifier).addUser(User(id: 1, username: 'John', age: 20, email: 'j@j.com'));                    
+                    ref.read(userViewModelProvider.notifier).addUser(User(id: 1, username: 'John', age: 20, email: 'j@j.com'));                    
                   }, 
                   child: const Text('Click Me!'),
                 )
@@ -38,7 +38,7 @@ class UserDetailScreen extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final users = ref.watch(usersProvider.select((state) => state.users));
+    final users = ref.watch(userViewModelProvider.select((state) => state.users));
 
     return Container(
       child: Column(

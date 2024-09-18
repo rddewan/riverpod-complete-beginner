@@ -121,13 +121,13 @@ class _AddUserScreenState extends ConsumerState<AddUserScreen> {
         email: _emailController.text
       );
 
-      ref.read(usersProvider.notifier).addUser(user);
+      ref.read(userViewModelProvider.notifier).addUser(user);
       
     }
   }
 
   void _listenerManual() {
-    ref.listenManual(usersProvider.select((state) => state.isAdded), (prev, next) {
+    ref.listenManual(userViewModelProvider.select((state) => state.isAdded), (prev, next) {
 
       if (next) {
         // ref.invalidate(usersProvider);
@@ -138,7 +138,7 @@ class _AddUserScreenState extends ConsumerState<AddUserScreen> {
 
     });
 
-    ref.listenManual(usersProvider.select((state) => state.error), (prev, next) {
+    ref.listenManual(userViewModelProvider.select((state) => state.error), (prev, next) {
 
       if (next != null) {
         showDialog(
@@ -155,7 +155,7 @@ class _AddUserScreenState extends ConsumerState<AddUserScreen> {
   }
 
   void _listener() {
-    ref.listen(usersProvider.select((state) => state.isAdded), (prev, next) {
+    ref.listen(userViewModelProvider.select((state) => state.isAdded), (prev, next) {
 
       if (next) {
         Navigator.of(context).pop();
@@ -163,7 +163,7 @@ class _AddUserScreenState extends ConsumerState<AddUserScreen> {
 
     });
 
-    ref.listen(usersProvider.select((state) => state.error), (prev, next) {
+    ref.listen(userViewModelProvider.select((state) => state.error), (prev, next) {
 
       if (next != null) {
         showDialog(

@@ -31,7 +31,7 @@ class _UserListScreenState extends ConsumerState<UserListScreen> {
   @override
   Widget build(BuildContext context) {
     debugPrint('UserScreen build');
-    final users = ref.watch(usersProvider.select((state) => state.users));
+    final users = ref.watch(userViewModelProvider.select((state) => state.users));
     
     return Scaffold(
       appBar: AppBar(title: const Text('User List Screen'),),
