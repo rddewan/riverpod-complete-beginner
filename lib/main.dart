@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:riverpod_beginner/screen/future_user_screen.dart';
 //import 'package:riverpod_beginner/screen/counter_screen.dart';
-import 'package:riverpod_beginner/screen/user_list_screen.dart';
+//import 'package:riverpod_beginner/screen/user_list_screen.dart';
 
 void main() {
   runApp(
@@ -18,7 +19,7 @@ class MainApp extends StatelessWidget {
     return const MaterialApp(
       home: Scaffold(
         body: Center(
-          child: UserListScreen(),
+          child: FutureUserListScreen(),
         ),
       ),
     );
