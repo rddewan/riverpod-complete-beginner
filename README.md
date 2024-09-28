@@ -1,3 +1,6 @@
 # riverpod_beginner
 
-A new Flutter project.
+A beginner guide to Flutter Riverpod.
+
+# Flutter Course
+* https://mobileacademy.io/
